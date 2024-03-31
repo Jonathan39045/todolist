@@ -1,20 +1,39 @@
 let inputbox=document.querySelector("#your-text")
 let listContainer=document.querySelector("#list-container")
 let addtask =document.querySelector("#submit")
+let f=/[0-9]/
 
 addtask.addEventListener("click",(event)=>{
     event.preventDefault();
-    
+
     if(inputbox.value.trim()===""){
         alert("Input-box should not be Empty")
         inputbox.value=""
+
+        // if(event.keyCode>=48 && event.keyCode<=57){
+        //     alert("Number format should not be Accepted here")
+        // }
+
+        // inputbox= inputbox.replace(/[0-9]/g,"")
+
         inputbox.focus();
+        ajith()
     }
     else if(inputbox.value.length<5){
         alert("The value should be in brief format")
         inputbox.value=""
+        // inputbox=inputbox.replace(/[0-9]/g,"")
         inputbox.focus();
     }
+
+
+    else if(inputbox.value.match(f))
+    {
+        alert("Numbers are not allowed here")
+        inputbox.value=""
+    }
+
+
     else{
         let li=document.createElement("li");
         li.innerHTML=inputbox.value;
@@ -42,6 +61,7 @@ listContainer.addEventListener("click",(event)=>{
     }
 
 }) 
+
 
 //Usage of the Local storage to store the items Locally in the Browsers.
 
